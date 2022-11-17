@@ -11,6 +11,7 @@ const defaultLogin = async (req, res) => {
   if (!isValidPassword)
     throw new Error("Email or phone number or password incorrect");
   const token = generateToken({ id: user._id });
+  delete user._doc.password;
   return res.json({ user, token });
 };
 
